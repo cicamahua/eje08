@@ -1,31 +1,24 @@
 <?php
-class Producto extends CI_Controller
+class Usuario extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-
-        if (!$this->session->has_userdata('logged_in')) {
-            redirect(base_url() . 'login/');
-        }
-    }
-    
     public function nuevo()
     {
         $datosC = [
-            'titulo' => 'Registro de Nuevo Producto'
+            'titulo' => 'Registro de Nuevo Usuario'
         ];
         $this->load->view("plantilla/cabecerahtml");
         $this->load->view("plantilla/cabecera", $datosC);
-        $this->load->view("producto/nuevo");
+        $this->load->view("usuario/nuevo");
         $this->load->view("plantilla/piehtml");
     }
 
     public function guardar()
     {
         $Nombre = $this->input->post("Nombre");
-        $Precio = $this->input->post("Precio");
-        $Detalle = $this->input->post("Detalle");
+        $Apellido = $this->input->post("Apellido");
+        $Fotografia = $this->input->post("Fotografia");
+        $Usuario = $this->input->post("Usuario");
+        $Contrasena = $this->input->post("Contrasena");
 
         // echo "GUARDANDO";
 
@@ -35,7 +28,7 @@ class Producto extends CI_Controller
 
 
 
-        $config['upload_path']          = './imagenes/productos/';
+        $config['upload_path']          = './imagenes/usuarios/';
         // $config['allowed_types']        = 'pdf';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 500;
@@ -46,13 +39,13 @@ class Producto extends CI_Controller
         $this->load->library('upload', $config);
 
         $datosEnviar = [
-            'titulo' => 'Registro de Producto'
+            'titulo' => 'Registro de Usuarios'
         ];
         $this->load->view("plantilla/cabecerahtml");
         $this->load->view("plantilla/cabecera", $datosEnviar);
 
         $nombreArchivo = "";
-        if ($this->upload->do_upload('Foto')) {
+        if ($this->upload->do_upload('Fotografia')) {
 
             // echo "correcto";
 
@@ -66,15 +59,15 @@ class Producto extends CI_Controller
             // echo $nombreArchivo;
 
 
-            $this->load->model("ProductoModel");
+            $this->load->model("UsuarioModel");
 
-            if ($this->ProductoModel->insertar($Nombre, $Precio, $Detalle, $nombreArchivo)) {
+            if ($this->UsuarioModel->insertar($Nombre, $Apellido, $nombreArchivo, $Usuario, $Contrasena)) {
                 //correcto
 
-                $this->load->view("producto/correcto");
+                $this->load->view("usuario/correcto");
             } else {
                 //error
-                $this->load->view("producto/error");
+                $this->load->view("usuario/error");
             }
         } else {
             // echo "error";
@@ -86,7 +79,7 @@ class Producto extends CI_Controller
             // print_r($errores);
             // echo "</pre>";
 
-            $this->load->view("producto/error");
+            $this->load->view("usuario/error");
         }
 
 
@@ -95,8 +88,8 @@ class Producto extends CI_Controller
 
     public function listar()
     {
-        $this->load->model("ProductoModel");
-        $datosProductos = $this->ProductoModel->seleccionar();
+        $this->load->model("UsuarioModel");
+        $datosUsuarios = $this->UsuarioModel->seleccionar();
 
         // foreach ($datosProductos as $p) {
         //     echo "<pre>";
@@ -114,8 +107,8 @@ class Producto extends CI_Controller
 
         $this->load->library('pagination');
 
-        $config['base_url'] = base_url() . 'producto/listar/';
-        $config['total_rows'] = count($datosProductos);
+        $config['base_url'] = base_url() . 'usuario/listar/';
+        $config['total_rows'] = count($datosUsuarios);
         $config['per_page'] = 2;
         $config['num_links'] = 3;
         $config['uri_segment'] = 3;
@@ -152,19 +145,19 @@ class Producto extends CI_Controller
 
 
 
-        $datosProductos = $this->ProductoModel->seleccionar($config['per_page'], $desde);
+        $datosUsuarios = $this->UsuarioModel->seleccionar($config['per_page'], $desde);
 
         $data = [
             'desde' => $desde,
-            'datosProductos' => $datosProductos
+            'datosUsuarios' => $datosUsuarios
         ];
 
         $dataC = [
-            'titulo' => "Listado de Productos"
+            'titulo' => "Listado de Usuarios"
         ];
         $this->load->view("plantilla/cabecerahtml");
         $this->load->view("plantilla/cabecera", $dataC);
-        $this->load->view("producto/listado", $data);
+        $this->load->view("usuario/listado", $data);
         $this->load->view("plantilla/piehtml");
     }
 }
