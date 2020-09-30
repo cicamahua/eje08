@@ -64,7 +64,7 @@ class Compra extends CI_Controller
 
         $this->load->library('pagination');
 
-        $config['base_url'] = base_url() . 'compralistar/';
+        $config['base_url'] = base_url() . 'compra/listar/';
         $config['total_rows'] = count($datosCompra);
         $config['per_page'] = 2;
         $config['num_links'] = 3;

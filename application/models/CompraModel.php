@@ -32,18 +32,16 @@ class CompraModel extends CI_Model
     public function seleccionar($cantidad = "", $desde = "0")
     {
 
-        // $valores = "' OR '1'='1 ";
 
-        $this->db->select('id_compra,id_producto,cantidad,fecha,hora');
-        // $this->db->where('nombre', $valores);
-        $this->db->where('activo', 1);
-        $this->db->order_by('cantidad');
-
+        $this->db->select('producto.nombre, compra.cantidad, compra.fecha, compra.hora');
+        $this->db->from('compra');
+        $this->db->join('producto', 'producto.id_producto = compra.id_producto');
         if ($cantidad != "") {
             $this->db->limit($cantidad, $desde);
         }
 
-        $query = $this->db->get('compra');
+        $query = $this->db->get();
+        
         return $query->result();
     }
 }
