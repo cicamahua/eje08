@@ -4,9 +4,9 @@
     <title>Acceso al Sistema</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>css/styles.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,7 +40,7 @@
 			                <form action="<?= base_url() ?>login/acceder" method="POST">
 			                	<input class="form-control" type="text" placeholder="Usuario" name="Usuario" id="Usuario">
 			                	<input class="form-control" type="password" placeholder="Password" name="Contrasena" id="Contrasena">
-			                	<input class="form-control" type="password" placeholder="Repita la Contrasena" name="Contrasena2">
+			                	<!--<input class="form-control" type="password" placeholder="Repita la Contrasena" name="Contrasena2">-->
 
 			                    <input type="submit" class="btn btn-primary signup" value="Ingresar">
                             
@@ -58,7 +58,7 @@
     <!-- jQuery - necessary for Bootstrap's JavaScript plugins  -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="<?= base_url(); ?>bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= base_url(); ?>js/custom.js"></script>
   </body>
 </html>

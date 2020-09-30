@@ -64,7 +64,7 @@
 
                         <li class="submenu">
                             <a href="#">
-                                <i class="glyphicon glyphicon-user"></i> Compras
+                                <i class="glyphicon glyphicon-shopping-cart"></i> Compras
                                 <span class="caret pull-right"></span>
                             </a>
                             <!-- Sub menu -->
@@ -76,13 +76,25 @@
 
                         <li class="submenu">
                             <a href="#">
-                                <i class="glyphicon glyphicon-user"></i> Ventas
+                                <i class="glyphicon glyphicon-tags"></i> Ventas
                                 <span class="caret pull-right"></span>
                             </a>
                             <!-- Sub menu -->
                             <ul>
                                 <li><a href="<?= base_url(); ?>venta/nuevo">Nueva Venta</a></li>
                                 <li><a href="<?= base_url(); ?>venta/listar">Listar Ventas</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="submenu">
+                            <a href="#">
+                                <i class="glyphicon glyphicon-file"></i> Reporte
+                                <span class="caret pull-right"></span>
+                            </a>
+                            <!-- Sub menu -->
+                            <ul>
+                                <li><a href="<?= base_url(); ?>reporte/venta">Reporte de Venta</a></li>
+                                <!-- <li><a href="<?= base_url(); ?>venta/listar">Listar Ventas</a></li> -->
                             </ul>
                         </li>
 
